@@ -1,16 +1,19 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { QrReader } from "react-qr-reader";
+import "./style.css";
 
 const QRCodeScanner = () => {
   const [qrCodeData, setQrCodeData] = useState("");
-  const [codeResponse, setCodeResponse] = useState({});
+  // eslint-disable-next-line no-unused-vars
+  const [qrCodeError, setQrCodeError] = useState("");
+  const [codeResponse, setCodeResponse] = useState(null);
   const [error, setError] = useState("");
 
   const verifyQRCode = async (codeData) => {
     try {
       const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URL}/verify`,
+        `${process.env.REACT_APP_API_URL}/guest/verify`,
         { qrCodeData: codeData }
       );
       setCodeResponse(data?.data);
@@ -20,30 +23,38 @@ const QRCodeScanner = () => {
     }
   };
 
-  return (
-    <>
-      <QrReader
-        onResult={(result, error) => {
-          if (!!result) {
-            setQrCodeData(result?.text);
-          }
+  const handleScanResult = (result, error) => {
+    if (!!result) {
+      console.log("result?.text", result?.text);
+      setQrCodeData(result?.text);
+    }
 
-          if (!!error) {
-            console.info(error);
-          }
-        }}
-        style={{ width: "12.5rem", height: "12.5rem" }}
-      />
-      <button onClick={() => verifyQRCode(qrCodeData)}>Verify</button>
+    if (!!error) {
+      setQrCodeError(error);
+    }
+  };
+
+  return (
+    <div className="qrcode_scanner">
+      <h1 className="qrcode_scanner_title">Access Code Scanner</h1>
+      <QrReader onResult={handleScanResult} className="qrcode_scanner_reader" />
+      <button
+        className="qrcode_scanner_button"
+        onClick={() => verifyQRCode(qrCodeData)}
+      >
+        Verify
+      </button>
       {codeResponse ? (
-        <>
+        <div className="qrcode_scanner_result">
           <h1>{codeResponse.guestNumber}</h1>
-          {codeResponse?.isScanned && <p>QrCode is valid</p>}
-        </>
+          {codeResponse.isScanned && (
+            <p className="qrcode_scanner_success">QR Code is valid</p>
+          )}
+        </div>
       ) : null}
 
-      {error ? <h2>{error}</h2> : null}
-    </>
+      {error ? <h2 className="qrcode_scanner_error">{error}</h2> : null}
+    </div>
   );
 };
 
