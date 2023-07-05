@@ -1,0 +1,10 @@
+.scan_overlay {
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  box-sizing: border-box;
+  border: 50px solid transparent;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
