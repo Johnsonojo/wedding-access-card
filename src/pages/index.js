@@ -37,7 +37,13 @@ const QRCodeScanner = () => {
   return (
     <div className="qrcode_scanner">
       <h1 className="qrcode_scanner_title">Access Code Scanner</h1>
-      <QrReader onResult={handleScanResult} className="qrcode_scanner_reader" />
+      <QrReader
+        onResult={handleScanResult}
+        className="qrcode_scanner_reader"
+        constraints={{
+          facingMode: "environment",
+        }}
+      />
       <button
         className="qrcode_scanner_button"
         onClick={() => verifyQRCode(qrCodeData)}
