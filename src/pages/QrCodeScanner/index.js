@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { QrReader } from "react-qr-reader";
+import { ScanOverlay } from "../../components/ScanOverlay";
 import "./style.css";
 
 const QRCodeScanner = () => {
@@ -43,6 +44,8 @@ const QRCodeScanner = () => {
         constraints={{
           facingMode: "environment",
         }}
+        ViewFinder={ScanOverlay}
+        scanDelay={500}
       />
       <button
         className="qrcode_scanner_button"

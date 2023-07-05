@@ -1,5 +1,5 @@
 import "./App.css";
-import QRCodeScanner from "./pages";
+import QRCodeScanner from "./pages/QrCodeScanner";
 
 function App() {
   return (
