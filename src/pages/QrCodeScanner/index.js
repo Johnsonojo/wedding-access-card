@@ -51,7 +51,7 @@ const QRCodeScanner = () => {
         className="qrcode_scanner_button"
         onClick={() => verifyQRCode(qrCodeData)}
       >
-        Verify
+        Verify Code
       </button>
       {codeResponse ? (
         <div className="qrcode_scanner_result">
