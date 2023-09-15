@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Qrcode Scanner",
+  "name": "Wedding Qrcode Scanner App",
   "icons": [
     {
       "src": "favicon.ico",
