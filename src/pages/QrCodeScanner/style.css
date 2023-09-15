@@ -19,14 +19,15 @@
 .qrcode_scanner_button {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   background-color: #02360c;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   height: 2.5rem;
-  width: 50%;
+  /* width: 50%; */
+  width: 13.3rem;
 }
 
 .qrcode_scanner_button:hover {
